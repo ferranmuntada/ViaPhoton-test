@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViaPhoton</title>
+</head>
+<body>
+    <textarea id="textArea"></textarea>
+    <button id="calculate">Calculate</button>
+    <p id="res">
+
+    </p>
+  <script type="text/javascript">
+  const textArea = document.getElementById('textArea');
+  const submit = document.getElementById('calculate');
+  const res = document.getElementById('res');
+
+  submit?.addEventListener("click", () => {
+    const [distance, nutsKg, foodHorse, carryMax] = textArea.value.split(',');
+    const message = calculate(distance, nutsKg, foodHorse, carryMax);
+    res.innerHTML = `The result is : ${message}`
+  });
+
+  function calculate(distance, nutsKg, foodHorse, carryMax) {
+  const numTravels = nutsKg / carryMax;
+  const consume = foodHorse * distance;
+  let acc = nutsKg;
+  for (let travelnumber = 1; travelnumber <= numTravels; travelnumber++) {
+    if(numTravels === travelnumber) {
+      acc = acc - consume;
+    } else {
+      acc = acc - (consume*2);
+    }    
+  }
+  return acc;
+  }
+  </script>
+</body>
+</html>
